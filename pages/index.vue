@@ -1,5 +1,7 @@
 <template>
-    <div class="w-full m-auto"><Icon name="ic:round-elderly-woman" /></div>    
+    <div class="w-full m-auto">
+        <Product />
+    </div>    
 </template>
 
 <script lang="ts" setup></script>

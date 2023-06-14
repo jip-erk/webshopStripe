@@ -14,8 +14,10 @@
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.7.0",
+    "@pinia/nuxt": "^0.4.11",
     "@vue-stripe/vue-stripe": "^4.5.0",
     "nuxt-icon": "^0.4.1",
+    "pinia": "^2.1.3",
     "sass": "^1.62.1",
     "stripe": "^12.6.0"
   }

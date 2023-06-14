@@ -13,10 +13,4 @@
     </div>
 </template>
 
-<style lang="scss" scoped>
-    .container{
-        margin-left: 15%;
-        margin-right: 15%;
-        width: 70%;
-    }
-</style>
+<style lang="scss" scoped></style>

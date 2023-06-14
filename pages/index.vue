@@ -1,7 +1,7 @@
 <template>
-    <div class="w-full h-screen bg-gray-200">
+    <div class="w-full h-full bg-gray-200">
         <div class="container">
-            <div class="flex flex-wrap gap-4">
+            <div class="flex flex-wrap gap-14 py-20">
                 <Product />
                 <Product />
                 <Product />
@@ -18,10 +18,4 @@
 
 <script lang="ts" setup></script>
 
-<style lang="scss" scoped>
-    .container{
-        margin-left: 15%;
-        margin-right: 15%;
-        width: 70%;
-    }
-</style>
+<style lang="scss" scoped></style>

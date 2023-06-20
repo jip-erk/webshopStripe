@@ -1,46 +1,52 @@
 <template>
-    <div class="w-full h-screen bg-gray-200">
-        <div v-for="(product, index) in store.products">
-            {{ product.name }}
-        </div>
-        <button @click="submit">Checkout</button>
-        <StripeCheckout ref="checkoutRef" mode="payment" :pk="publishableKey" :line-items="lineItems"
-            :success-url="successURL" :cancel-url="cancelURL" @loading="(v: any) => loading = v" />
+  <div class="w-full h-screen flex bg-gray-200">
+    <div class="flex flex-col mt-5 gap-5 w-full">
+      <CardProduct
+        :product="product"
+        v-for="(product, index) in store.products"
+        :key="index"
+      />
     </div>
+    <div class="w-[400px] flex flex-col gap-2 p-5">
+      <span class="font-bold">Total € {{ total / 100 }}</span>
+      <button
+        class="w-full bg-indigo-500 h-10 px-4 rounded-lg text-white font-medium"
+        @click="submit"
+      >
+        Checkout
+      </button>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { StripeCheckout } from '@vue-stripe/vue-stripe';
-import { useCardStore } from '@/store/card'
+import { useCardStore } from "@/store/card";
+import { loadStripe } from "@stripe/stripe-js";
 
-const store = useCardStore()
+const stripe = await loadStripe(
+  "pk_test_51MybulCVFy2ARuKJxTpemXzJf3qPBCUZOO3dVttUCojoiQA8rtdc1TI4Ca96GpcQIgljL94wtU5zgeh3Cw1KlrlI00guPK9dL6"
+);
 
-const publishableKey = ref('pk_test_51MybulCVFy2ARuKJxTpemXzJf3qPBCUZOO3dVttUCojoiQA8rtdc1TI4Ca96GpcQIgljL94wtU5zgeh3Cw1KlrlI00guPK9dL6')
-const loading = ref(false);
+const total = computed(() => {
+  return store.products.reduce(
+    (accumulator, product) =>
+      accumulator + product.price_euro * product.quantity,
+    0
+  );
+});
 
-const baseUrl = ref('')
+const store = useCardStore();
 
-onMounted(() => {
-    baseUrl.value = window.location.protocol + '//' + window.location.host;
-})
-
-const successURL = ref(`${baseUrl}/succes`)
-const cancelURL = ref(`${baseUrl}/failed`)
-
-const lineItems = ref([
-    {
-        price: 'price_1NBIJ2CVFy2ARuKJYJwjD3Qf', // The id of the one-time price you created in your Stripe dashboard
-        quantity: 1,
+const submit = async () => {
+  const lineItems = store.getLineItems();
+  const data = await $fetch("/api/pay", {
+    method: "POST",
+    body: {
+      items: lineItems,
     },
-])
-
-
-const checkoutRef = ref()
-
-function submit() {
-    checkoutRef.value.redirectToCheckout();
-}
-
+  });
+  window.location = data;
+};
 </script>
 
 <style lang="scss" scoped></style>

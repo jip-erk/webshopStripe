@@ -1,19 +1,18 @@
 <template>
-    <div class="w-full m-auto h-20 bg-white">
-            <div class="flex justify-between h-20 items-center">
-                <NuxtLink to="/">
-                    <div class="text-2xl font-semibold">
-                        Stripe Shop
-                    </div>
-                </NuxtLink>
+    <div class="w-full px-12 max-h-20 bg-white">
+        <div class="flex justify-between h-20 items-center">
+            <NuxtLink to="/">
+                <div class="text-2xl font-semibold">
+                    Stripe Shop
+                </div>
+            </NuxtLink>
 
-                <NuxtLink to="/card" class="link">
-                    <div class="basket flex gap-2 px-3 py-2">
-                        <span class=" font-mono">{{ cardCount }}</span>
-                        <Icon name="material-symbols:shopping-cart-rounded" size="24" />
-                    </div>
-                </NuxtLink>
-            </div>
+            <NuxtLink to="/card" class="link">
+                <div class="basket flex gap-2 px-3 py-2">
+                    <span class=" font-mono">{{ cardCount }}</span>
+                    <Icon name="material-symbols:shopping-cart-rounded" size="24" />
+                </div>
+            </NuxtLink>
         </div>
     </div>
 </template>

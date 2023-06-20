@@ -18,7 +18,11 @@ const store = useCardStore()
 const publishableKey = ref('pk_test_51MybulCVFy2ARuKJxTpemXzJf3qPBCUZOO3dVttUCojoiQA8rtdc1TI4Ca96GpcQIgljL94wtU5zgeh3Cw1KlrlI00guPK9dL6')
 const loading = ref(false);
 
-const baseUrl = window.location.protocol + '//' + window.location.host;
+const baseUrl = ref('')
+
+onMounted(() => {
+    baseUrl.value = window.location.protocol + '//' + window.location.host;
+})
 
 const successURL = ref(`${baseUrl}/succes`)
 const cancelURL = ref(`${baseUrl}/failed`)

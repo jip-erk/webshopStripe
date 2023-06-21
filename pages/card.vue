@@ -1,18 +1,11 @@
 <template>
   <div class="w-full h-screen flex bg-gray-200">
     <div class="flex flex-col mt-5 gap-5 w-full">
-      <CardProduct
-        :product="product"
-        v-for="(product, index) in store.products"
-        :key="index"
-      />
+      <CardProduct :product="product" v-for="(product, index) in store.products" :key="index" />
     </div>
     <div class="w-[400px] flex flex-col gap-2 p-5">
       <span class="font-bold">Total € {{ total / 100 }}</span>
-      <button
-        class="w-full bg-indigo-500 h-10 px-4 rounded-lg text-white font-medium"
-        @click="submit"
-      >
+      <button class="w-full bg-indigo-500 h-10 px-4 rounded-lg text-white font-medium" @click="submit">
         Checkout
       </button>
     </div>

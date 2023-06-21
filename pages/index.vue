@@ -1,9 +1,7 @@
 <template>
-  <div class="w-full h-full bg-gray-200">
-    <div class="container">
-      <div class="flex flex-wrap gap-14 py-20">
-        <Product :item="item" v-for="(item, index) in items" :key="index" />
-      </div>
+  <div class="w-full px-5 bg-gray-200">
+    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+      <Product :item="item" v-for="(item, index) in items" :key="index" />
     </div>
   </div>
 </template>
